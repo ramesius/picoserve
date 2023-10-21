@@ -218,7 +218,7 @@ mod head_method_util {
             self,
             _connection: Connection<R>,
             _writer: W,
-        ) -> Result<(), crate::io::WriteAllError<W::Error>> {
+        ) -> Result<(), W::Error> {
             Ok(())
         }
     }

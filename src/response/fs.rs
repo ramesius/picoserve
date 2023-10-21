@@ -61,7 +61,7 @@ impl super::HeadersIter for ETag {
     async fn for_each_header<F: super::ForEachHeader>(
         self,
         mut f: F,
-    ) -> Result<(), crate::io::WriteAllError<F::Error>> {
+    ) -> Result<(), F::Error> {
         f.call("ETag", self).await
     }
 }
@@ -137,7 +137,7 @@ impl super::Content for File {
         self,
         _connection: super::Connection<R>,
         mut writer: W,
-    ) -> Result<(), crate::io::WriteAllError<W::Error>> {
+    ) -> Result<(), W::Error> {
         writer.write_all(self.body).await
     }
 }
